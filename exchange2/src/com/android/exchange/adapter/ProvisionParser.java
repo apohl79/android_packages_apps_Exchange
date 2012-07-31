@@ -118,20 +118,20 @@ public class ProvisionParser extends Parser {
             int res = 0;
             switch (tag) {
                 case Tags.PROVISION_DEVICE_PASSWORD_ENABLED:
-                    if (getValueInt() == 1) {
-                        passwordEnabled = true;
-                        if (policy.mPasswordMode == Policy.PASSWORD_MODE_NONE) {
-                            policy.mPasswordMode = Policy.PASSWORD_MODE_SIMPLE;
-                        }
-                    }
+                    //if (getValueInt() == 1) {
+                    //    passwordEnabled = true;
+                    //    if (policy.mPasswordMode == Policy.PASSWORD_MODE_NONE) {
+                    //        policy.mPasswordMode = Policy.PASSWORD_MODE_SIMPLE;
+                    //    }
+                    //}
                     break;
                 case Tags.PROVISION_MIN_DEVICE_PASSWORD_LENGTH:
-                    policy.mPasswordMinLength = getValueInt();
+                    //policy.mPasswordMinLength = getValueInt();
                     break;
                 case Tags.PROVISION_ALPHA_DEVICE_PASSWORD_ENABLED:
-                    if (getValueInt() == 1) {
-                        policy.mPasswordMode = Policy.PASSWORD_MODE_STRONG;
-                    }
+                    //if (getValueInt() == 1) {
+                    //    policy.mPasswordMode = Policy.PASSWORD_MODE_STRONG;
+                    //}
                     break;
                 case Tags.PROVISION_MAX_INACTIVITY_TIME_DEVICE_LOCK:
                     // EAS gives us seconds, which is, happily, what the PolicySet requires
@@ -147,7 +147,7 @@ public class ProvisionParser extends Parser {
                     policy.mPasswordHistory = getValueInt();
                     break;
                 case Tags.PROVISION_ALLOW_CAMERA:
-                    policy.mDontAllowCamera = (getValueInt() == 0);
+                    policy.mDontAllowCamera = false;
                     break;
                 case Tags.PROVISION_ALLOW_SIMPLE_DEVICE_PASSWORD:
                     // Ignore this unless there's any MSFT documentation for what this means
@@ -358,9 +358,9 @@ public class ProvisionParser extends Parser {
         }
 
         // Make sure policy settings are valid; password not enabled trumps other password settings
-        if (!passwordEnabled) {
+        //if (!passwordEnabled) {
             policy.mPasswordMode = Policy.PASSWORD_MODE_NONE;
-        }
+		//}
 
         if (!unsupportedList.isEmpty()) {
             StringBuilder sb = new StringBuilder();
